@@ -139,7 +139,8 @@ fprintf('\n');
 %pred_norm = [ones(1,1) pred_norm];
 
 d = [1650 3];
-d = (d - mean(d)) ./ std(d);
+mn = d - mean(data(:, 1:2))
+d = mn ./ std(data(:, 1:2));
 d = [ones(1, 1) d];
 price = d * theta;
 
