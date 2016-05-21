@@ -62,23 +62,18 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+X = [ones(size(X, 1), 1) X];
+% Convert y from (1-10) class into num_labels vector
+yVec = eye(num_labels);
+y = yVec(y,:);
 
+a2 = sigmoid(Theta1 * X');
+a2 = [ones(1, size(a2,2)); a2];
+a3 = sigmoid(a2' * Theta2');
 
+calc = (-y .* log(a3)) - ((1 - y) .* log(1 - a3));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+J = ((1 / m) .* sum(sum(calc)));
 
 % -------------------------------------------------------------
 
