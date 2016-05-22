@@ -73,6 +73,7 @@ a3 = sigmoid(a2' * Theta2');
 
 calc = (-y .* log(a3)) - ((1 - y) .* log(1 - a3));
 
+% Unregularized Cost Function
 J = ((1 / m) .* sum(sum(calc)));
 
 % -------------------------------------------------------------
