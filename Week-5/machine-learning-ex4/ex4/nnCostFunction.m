@@ -94,20 +94,20 @@ J = J + (lambda / (2 * m)) * (sumTheta1 + sumTheta2);
 delta1 = zeros(size(Theta1));
 delta2 = zeros(size(Theta2));
 
-for i = 1 : m,
-	a1 = X(1, :); 											% 1 x 401
-	z2 = a1 * Theta1'; 										% 1 x 25
-	a2 = sigmoid(z2);										% 1 x 25
-	a2 = [1 a2]; 											% 1 x 26
-	z3 = a2 * Theta2'; 										% 1 x 10
-	a3 = sigmoid(z3); 										% 1 x 10
 
-	d3 = a3 - y(i); 										% 1 x 10
-	d2 = (d3 * Theta2)' .* sigmoidGradient([1 z2])';		% 1 x 25
+	a1 = X; 												% 5000 x 401
+	z2 = a1 * Theta1'; 										% 5000 x 25
+	a2 = sigmoid(z2);										% 5000 x 25
+	a2 = [ones(size(a2, 1), 1) a2];							% 5000 x 26
+	z3 = a2 * Theta2'; 										% 5000 x 10
+	a3 = sigmoid(z3); 										% 5000 x 10
 
-	delta1 = delta1 + d2(2:end) * a1;						% 25 x 401
+	d3 = a3 - y;	 										% 5000 x 10
+	d2 = (d3 * Theta2(:, 2:end)) .* sigmoidGradient(z2);	% 5000 x 25
+	
+	delta1 = delta1 + d2' * a1;								% 25 x 401
 	delta2 = delta2 + d3' * a2;								% 10 x 26
-end;
+
 
 Theta1_grad = (1 / m) * delta1 + (lambda / m) * tempTheta1;
 Theta2_grad = (1 / m) * delta2 + (lambda / m) * tempTheta2;
