@@ -76,6 +76,14 @@ calc = (-y .* log(a3)) - ((1 - y) .* log(1 - a3));
 % Unregularized Cost Function
 J = ((1 / m) .* sum(sum(calc)));
 
+Theta1(:, 1) = 0;
+Theta2(:, 1) = 0;
+
+sumTheta1 = sum(sum(power(Theta1, 2), 2));
+sumTheta2 = sum(sum(power(Theta2, 2), 2));
+
+J = J + (lambda / (2 * m)) * (sumTheta1 + sumTheta2);
+
 % -------------------------------------------------------------
 
 % =========================================================================
