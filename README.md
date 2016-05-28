@@ -6,4 +6,5 @@ All the solutions to the exercises here are perfectly correct, having received 1
 :heart: Love this course! :smile: :satisfied:
 
 Cheers,
+
 Happy Coding!
