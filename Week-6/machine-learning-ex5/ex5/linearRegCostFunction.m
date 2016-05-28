@@ -20,15 +20,13 @@ grad = zeros(size(theta));
 %
 
 
+JD = (1/(2 * m)) * sum(power(((X * theta) - y), 2));
+gradient = ((1 / m) * ((X' * X * theta) - (X' * y)));
 
+theta(1) = 0;
+J = JD + ((lambda / (2 * m)) * sum(power(theta',2)));
 
-
-
-
-
-
-
-
+grad = gradient + (lambda / m) * theta;
 
 % =========================================================================
 
